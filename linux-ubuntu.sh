@@ -1,6 +1,7 @@
 #!/bin/bash
 # CAUTION: Untested
-# Please run as root
+# NOTE: Please run as root, this is not unattended install, you will be prompted by some packages for configuration
+# NOTE: Targets Ubuntu 17.10 & 18.04
 
 echo "Adding repositories...\n";
 
@@ -33,6 +34,9 @@ add-apt-repository -y ppa:danielrichter2007/grub-customizer;
 #Flatpak
 add-apt-repository -y ppa:alexlarsson/flatpak;
 
+# GNS3
+add-apt-repository -y ppa:gns3/ppa;
+
 # SDR
 add-apt-repository -y ppa:bladerf/bladerf;
 add-apt-repository -y ppa:ettusresearch/uhd;
@@ -60,8 +64,9 @@ add-apt-repository \
    stable";
 
 # Skype
-curl -fsSL  https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -;
-echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | tee /etc/apt/sources.list.d/skypeforlinux.list;
+# Switching to snap package of skype instead
+# curl -fsSL  https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -;
+# echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | tee /etc/apt/sources.list.d/skypeforlinux.list;
 
 # Wire
 wget -q https://wire-app.wire.com/linux/releases.key -O- | sudo apt-key add -;
@@ -104,6 +109,7 @@ sudo apt install anki \
 	blender \
 	breeze-icon-theme \
 	browser-plugin-vlc \
+	chkrootkit \
 	chrome-gnome-shell \
 	chromium-browser \
 	clamav \
@@ -136,26 +142,32 @@ sudo apt install anki \
 	libusb-1.0-0-dev \
 	libv4l-dev \
 	libvolk1-bin \
+	mariadb-server \
 	mono-devel \
 	obs-studio \
 	phoronix-test-suite \
+	php-fpm \
+	php-mysql \
+	php-pear \
 	playonlinux \
 	ppa-purge \
 	qbittorrent \
 	qt5-default \
 	r-base \
-	skypeforlinux \
+	redis-server \
 	sni-qt \
 	stellarium \
 	sublime-text-installer \
 	tmux \
 	uget \
+	ufw \
 	veracrypt \
 	vim \
 	virtualbox \
 	vlc \
 	wine-stable \
 	winetricks \
+	wireshark \
 	xbacklight \
 	xbindkeys \
 	xbindkeys-config \
@@ -164,39 +176,64 @@ sudo apt install anki \
 	zenmap;
 
 echo "Install Software from added repos";
-sudo apt install -y docker-ce \
-	oracle-java9-installer \
-	nodejs \
-	flatpak \
+sudo apt install -y \
 	codeblocks \
 	codeblocks-contrib \
 	cubicsdr \
-	grub-customizer \
+	docker-ce \
+	flatpak \
+	gns3-gui \
 	golang-1.9-go \
 	google-chrome-stable \
+	grub-customizer \
+	insync \
+	nodejs \
+	nginx \
+	oracle-java9-installer \
 	rstudio \
 	teamviewer \
 	vivaldi-stable \
-	wire-desktop \
-	insync;
+	wire-desktop;
 
-# Todo
-# 
-# tor \
-# torbrowser-launcher 
-# Anaconda
 
 # Teamviewer
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
 dpkg -i teamviewer_amd64.deb;
 
-snap install intellij-idea-ultimate brave;
+snap install intellij-idea-ultimate skype brave;
 
 pip install powerline-status;
 
 # For GQRX
 volk_profile
 
-rm -rf /staging
-popd
+# Configure MariaDB
+mysql_secure_installation
 
+# Setup firewall
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 'Nginx Full'
+ufw enable
+
+
+popd
+rm -rf /staging
+
+# Todo
+# 
+# tor \
+# torbrowser-launcher 
+# Anaconda
+# VMWare Workstation Pro
+# gns3-iou \
+# PHP: cgi.fix_pathinfo=0
+# Update ~/.zshrc
+# export PATH="/home/r/anaconda3/bin:$PATH"
+# export PATH="$PATH:/usr/lib/go-1.9/bin"
+# export GOROOT=/usr/lib/go-1.9
+# export PATH="$PATH:$GOROOT/bin"
+# export PATH="$PATH:$HOME/.cargo/env"
+
+# alias tbase="tmux attach -t base || tmux new -s base"
+# alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo snap refresh"
