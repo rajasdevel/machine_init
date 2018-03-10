@@ -5,12 +5,12 @@
 
 echo "Adding repositories...\n";
 
-pushd .
+pushd $PWD
 mkdir /staging
 cd /staging
 
 #WebUpd8
-add-apt-repository ppa:nilarimogard/webupd8;
+#add-apt-repository -y ppa:nilarimogard/webupd8;
 
 # Java
 add-apt-repository -y ppa:webupd8team/java;
@@ -22,7 +22,7 @@ add-apt-repository -y ppa:gophers/archive;
 add-apt-repository -y ppa:webupd8team/sublime-text-3;
 
 # Code Blocks
-add-apt-repository ppa:damien-moore/codeblocks-stable;
+add-apt-repository -y ppa:damien-moore/codeblocks-stable;
 
 # Nginx
 add-apt-repository -y ppa:nginx/stable;
@@ -114,6 +114,7 @@ sudo apt install anki \
 	chkrootkit \
 	chrome-gnome-shell \
 	chromium-browser \
+	cifs-utils \
 	clamav \
 	clamtk \
 	dconf-editor \
@@ -145,6 +146,7 @@ sudo apt install anki \
 	libv4l-dev \
 	libvolk1-bin \
 	mariadb-server \
+	meld \
 	mono-devel \
 	obs-studio \
 	phoronix-test-suite \
@@ -175,6 +177,7 @@ sudo apt install anki \
 	xbindkeys-config \
 	xclip \
 	xvkbd \
+	zeal \
 	zenmap;
 
 echo "Install Software from added repos";
@@ -189,6 +192,8 @@ sudo apt install -y \
 	google-chrome-stable \
 	grub-customizer \
 	insync \
+	insync-nautilus \
+	insync-dolphin \
 	nodejs \
 	nginx \
 	oracle-java9-installer \
@@ -202,7 +207,14 @@ sudo apt install -y \
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
 apt-get install ./teamviewer_amd64.deb;
 
-snap install intellij-idea-ultimate skype brave;
+# Add flathub remote
+flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+#Install flatpack packages
+flatpak install -y flathub org.freefilesync.FreeFileSync
+
+
+# Install snap packages
+snap install intellij-idea-ultimate skype brave tor-browser;
 
 pip install powerline-status;
 
@@ -224,8 +236,6 @@ rm -rf /staging
 
 # Todo
 # 
-# tor \
-# torbrowser-launcher 
 # Anaconda
 # VMWare Workstation Pro
 # gns3-iou \
