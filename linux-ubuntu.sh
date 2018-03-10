@@ -9,6 +9,8 @@ pushd .
 mkdir /staging
 cd /staging
 
+#WebUpd8
+add-apt-repository ppa:nilarimogard/webupd8;
 
 # Java
 add-apt-repository -y ppa:webupd8team/java;
@@ -198,7 +200,7 @@ sudo apt install -y \
 
 # Teamviewer
 wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
-dpkg -i teamviewer_amd64.deb;
+apt-get install ./teamviewer_amd64.deb;
 
 snap install intellij-idea-ultimate skype brave;
 
