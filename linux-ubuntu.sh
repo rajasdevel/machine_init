@@ -49,6 +49,11 @@ add-apt-repository -y ppa:gqrx/gqrx-sdr;
 # uGet
 add-apt-repository -y ppa:plushuang-tw/uget-stable;
 
+# Elementary OS
+# add-apt-repository -y ppa:elementary-os/stable;
+# or daily
+# add-apt-repository -y ppa:elementary-os/daily;
+
 # Chrome 
 wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -;
 sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list';
@@ -119,11 +124,13 @@ sudo apt install anki \
 	clamtk \
 	dconf-editor \
 	filezilla \
+	fonts-oxygen \
 	fonts-powerline \
 	fonts-roboto \
 	gimp \
 	git \
 	gnome-shell-pomodoro \
+	gnome-software-plugin-limba \
 	gnome-tweak-tool \
 	gparted \
 	gqrx-sdr \
@@ -145,6 +152,7 @@ sudo apt install anki \
 	libusb-1.0-0-dev \
 	libv4l-dev \
 	libvolk1-bin \
+	limba \
 	mariadb-server \
 	meld \
 	mono-devel \
@@ -159,6 +167,8 @@ sudo apt install anki \
 	qt5-default \
 	r-base \
 	redis-server \
+	ruby \
+	ruby-dev \
 	sni-qt \
 	stellarium \
 	sublime-text-installer \
@@ -187,6 +197,7 @@ sudo apt install -y \
 	cubicsdr \
 	docker-ce \
 	flatpak \
+	gnome-software-plugin-flatpak \
 	gns3-gui \
 	golang-1.9-go \
 	google-chrome-stable \
@@ -208,15 +219,17 @@ wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
 apt-get install ./teamviewer_amd64.deb;
 
 # Add flathub remote
-flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo;
 #Install flatpack packages
-flatpak install -y flathub org.freefilesync.FreeFileSync
+flatpak install -y flathub org.freefilesync.FreeFileSync;
 
 
 # Install snap packages
 snap install intellij-idea-ultimate skype brave tor-browser;
 
 pip install powerline-status;
+
+gem install bropages;
 
 # For GQRX
 volk_profile
@@ -230,6 +243,9 @@ ufw default allow outgoing
 ufw allow 'Nginx Full'
 ufw enable
 
+# Set up gnome
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
 popd
 rm -rf /staging
