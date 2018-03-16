@@ -24,6 +24,9 @@ add-apt-repository -y ppa:webupd8team/sublime-text-3;
 # Code Blocks
 add-apt-repository -y ppa:damien-moore/codeblocks-stable;
 
+# Zeal
+add-apt-repository -y ppa:zeal-developers/ppa;
+
 # Nginx
 add-apt-repository -y ppa:nginx/stable;
 
@@ -211,7 +214,8 @@ sudo apt install -y \
 	rstudio \
 	teamviewer \
 	vivaldi-stable \
-	wire-desktop;
+	wire-desktop \
+	zeal;
 
 
 # Teamviewer
@@ -265,3 +269,7 @@ rm -rf /staging
 
 # alias tbase="tmux attach -t base || tmux new -s base"
 # alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo snap refresh"
+
+# To execute
+# 
+# timedatectl set-local-rtc 1
