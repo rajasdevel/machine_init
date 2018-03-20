@@ -176,6 +176,7 @@ sudo apt install anki \
 	stellarium \
 	sublime-text-installer \
 	tmux \
+	tree \
 	uget \
 	ufw \
 	veracrypt \
