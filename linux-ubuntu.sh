@@ -13,28 +13,25 @@ cd /staging
 #add-apt-repository -y ppa:nilarimogard/webupd8;
 
 # Java
-add-apt-repository -y ppa:webupd8team/java;
+# add-apt-repository -y ppa:webupd8team/java;
 
 # Go
-add-apt-repository -y ppa:gophers/archive;
+# add-apt-repository -y ppa:gophers/archive;
 
 # Sublime Text 3
-add-apt-repository -y ppa:webupd8team/sublime-text-3;
+# add-apt-repository -y ppa:webupd8team/sublime-text-3;
 
 # Code Blocks
-add-apt-repository -y ppa:damien-moore/codeblocks-stable;
+# add-apt-repository -y ppa:damien-moore/codeblocks-stable;
 
 # Zeal
-add-apt-repository -y ppa:zeal-developers/ppa;
+# add-apt-repository -y ppa:zeal-developers/ppa;
 
 # Nginx
-add-apt-repository -y ppa:nginx/stable;
-
-# Tor Browser
-add-apt-repository -y ppa:webupd8team/tor-browser;
+# add-apt-repository -y ppa:nginx/stable;
 
 #Grub customizer
-add-apt-repository -y ppa:danielrichter2007/grub-customizer;
+# add-apt-repository -y ppa:danielrichter2007/grub-customizer;
 
 #Flatpak
 add-apt-repository -y ppa:alexlarsson/flatpak;
@@ -43,11 +40,11 @@ add-apt-repository -y ppa:alexlarsson/flatpak;
 add-apt-repository -y ppa:gns3/ppa;
 
 # SDR
-add-apt-repository -y ppa:bladerf/bladerf;
-add-apt-repository -y ppa:ettusresearch/uhd;
-add-apt-repository -y ppa:myriadrf/drivers;
-add-apt-repository -y ppa:myriadrf/gnuradio;
-add-apt-repository -y ppa:gqrx/gqrx-sdr;
+# add-apt-repository -y ppa:bladerf/bladerf;
+# add-apt-repository -y ppa:ettusresearch/uhd;
+# add-apt-repository -y ppa:myriadrf/drivers;
+# add-apt-repository -y ppa:myriadrf/gnuradio;
+# add-apt-repository -y ppa:gqrx/gqrx-sdr;
 
 # uGet
 add-apt-repository -y ppa:plushuang-tw/uget-stable;
@@ -57,13 +54,13 @@ add-apt-repository -y ppa:plushuang-tw/uget-stable;
 # or daily
 # add-apt-repository -y ppa:elementary-os/daily;
 
-# Chrome 
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -;
-sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list';
+# # Chrome 
+# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -;
+# sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list';
 
-# Vivaldi
-wget -O - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add -;
-echo "deb http://repo.vivaldi.com/stable/deb/ stable main" | tee /etc/apt/sources.list.d/vivaldi.list;
+# # Vivaldi
+# wget -O - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add -;
+# echo "deb http://repo.vivaldi.com/stable/deb/ stable main" | tee /etc/apt/sources.list.d/vivaldi.list;
 
 
 # Docker
@@ -106,10 +103,6 @@ apt install -y \
     software-properties-common \
     build-essential \
     zsh;
-
-echo "Installing oh-my-zsh";
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
-
 
 
 echo "Installing packages included in Ubuntu Multiverse";
@@ -166,6 +159,8 @@ sudo apt install anki \
 	php-pear \
 	playonlinux \
 	ppa-purge \
+	python-pip \
+	python3-pip \
 	qbittorrent \
 	qt5-default \
 	r-base \
@@ -174,12 +169,11 @@ sudo apt install anki \
 	ruby-dev \
 	sni-qt \
 	stellarium \
-	sublime-text-installer \
+	sysdig \
 	tmux \
 	tree \
 	uget \
 	ufw \
-	veracrypt \
 	vim \
 	virtualbox \
 	vlc \
@@ -211,17 +205,11 @@ sudo apt install -y \
 	insync-dolphin \
 	nodejs \
 	nginx \
-	oracle-java9-installer \
 	rstudio \
 	teamviewer \
 	vivaldi-stable \
 	wire-desktop \
 	zeal;
-
-
-# Teamviewer
-wget https://download.teamviewer.com/download/linux/teamviewer_amd64.deb;
-apt-get install ./teamviewer_amd64.deb;
 
 # Add flathub remote
 flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo;
@@ -230,7 +218,7 @@ flatpak install -y flathub org.freefilesync.FreeFileSync;
 
 
 # Install snap packages
-snap install intellij-idea-ultimate skype brave tor-browser;
+snap install skype brave tor-browser sublime-text;
 
 pip install powerline-status;
 
@@ -245,12 +233,12 @@ mysql_secure_installation
 # Setup firewall
 ufw default deny incoming
 ufw default allow outgoing
-ufw allow 'Nginx Full'
+# ufw allow 'Nginx Full'
 ufw enable
 
 # Set up gnome
-gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+# gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+# gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
 
 popd
 rm -rf /staging
@@ -274,3 +262,8 @@ rm -rf /staging
 # To execute
 # 
 # timedatectl set-local-rtc 1
+
+
+
+# echo "Installing oh-my-zsh";
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
