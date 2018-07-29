@@ -52,39 +52,92 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # Tap
 brew tap homebrew/dupes
 brew tap homebrew/science
-brew tap josegonzalez/php
+brew tap homebrew/php
+brew tap caskroom/versions
+brew tap homebrew/services
 
 # Cask
 brew install caskroom/cask/brew-cask
-brew tap caskroom/versions
 
-# Brew packages
+# dev & utils
+brew install bash-completion
 brew install ack
+brew install apache-spark
 brew install Caskroom/cask/xquartz
+brew install cocoapods
 brew install ffmpeg
 brew install gcc
 brew install gfortran
+brew install git
+brew install go
 brew install htop
 brew install imagemagick
+brew install imagemagick
 brew install iotop
+brew install macvim --override-system-vim --custom-system-icons
 brew install mongodb
 brew install mtr --no-gtk
 brew install mysql
+brew install nano
 brew install nginx
 brew install nmap
 brew install node
 brew install openssl
-brew install php70 --with-pear --with-imap
-brew install php70-xdebug
+brew install parallel
+brew install php --without-apache --with-fpm --with-mysql --with-pear --with-imap
+brew install php-xdebug
 brew install postgresql
+brew install protobuf
 brew install pyqt
 brew install python
 brew install python3
 brew install r
+brew install rdesktop
 brew install redis
-brew install wget
+brew install sqlcipher
+brew install sqlite
+brew install svn
+brew install terraform
+brew install tree
+brew install unrar
+brew install vault
+brew install vim --override-system-vi
+brew install wine
+brew install winetricks
 brew install wireshark --with-qt
 brew install zmq
+brew install dnsmasq
+
+# GNU 
+brew install bash
+brew install binutils
+brew install coreutils
+brew install curl
+brew install diffutils
+brew install ed --default-names
+brew install emacs
+brew install file-formula
+brew install findutils --with-default-names
+brew install gawk
+brew install gdb  # gdb requires further actions to make it work. See `brew info gdb`.
+brew install gnu-indent --with-default-names
+brew install gnu-sed --with-default-names
+brew install gnu-tar --with-default-names
+brew install gnu-which --with-default-names
+brew install gnutls
+brew install gpatch
+brew install grep --with-default-names
+brew install gzip
+brew install less
+brew install m4
+brew install make
+brew install rsync
+brew install screen
+brew install unzip
+brew install watch
+brew install wdiff --with-gettext
+brew install wget
+brew install zsh
 
 # Cask packages
 brew cask install anaconda
@@ -133,6 +186,7 @@ echo 'export PATH="$PATH:~/.composer/vendor/bin"' >> ~/.zshrc
 gem install rails
 gem install bropages
 
+echo "set startup-with-shell off" >> ~/.gdbinit
 
 # From the App Store, install:
 # xcode, evernote, dash3, skitch, pocket, mediashare, imovie, microsoft remote desktop, kindle
