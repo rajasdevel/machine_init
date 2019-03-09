@@ -1,162 +1,94 @@
 #!/bin/bash
 # CAUTION: Untested
 # NOTE: Please run as root, this is not unattended install, you will be prompted by some packages for configuration
-# NOTE: Targets Ubuntu 17.10 & 18.04
+# NOTE: Targets Ubuntu 18.10
 
 echo "Adding repositories...\n";
 
-pushd $PWD
-mkdir /staging
-cd /staging
-
-#WebUpd8
-#add-apt-repository -y ppa:nilarimogard/webupd8;
-
-# Java
-# add-apt-repository -y ppa:webupd8team/java;
-
-# Go
-# add-apt-repository -y ppa:gophers/archive;
-
-# Sublime Text 3
-# add-apt-repository -y ppa:webupd8team/sublime-text-3;
-
-# Code Blocks
-# add-apt-repository -y ppa:damien-moore/codeblocks-stable;
-
-# Zeal
-# add-apt-repository -y ppa:zeal-developers/ppa;
-
-# Nginx
-# add-apt-repository -y ppa:nginx/stable;
-
 #Grub customizer
-# add-apt-repository -y ppa:danielrichter2007/grub-customizer;
-
-#Flatpak
-add-apt-repository -y ppa:alexlarsson/flatpak;
+add-apt-repository -y ppa:danielrichter2007/grub-customizer
 
 # GNS3
-add-apt-repository -y ppa:gns3/ppa;
-
-# SDR
-# add-apt-repository -y ppa:bladerf/bladerf;
-# add-apt-repository -y ppa:ettusresearch/uhd;
-# add-apt-repository -y ppa:myriadrf/drivers;
-# add-apt-repository -y ppa:myriadrf/gnuradio;
-# add-apt-repository -y ppa:gqrx/gqrx-sdr;
-
-# uGet
-add-apt-repository -y ppa:plushuang-tw/uget-stable;
-
-# Elementary OS
-# add-apt-repository -y ppa:elementary-os/stable;
-# or daily
-# add-apt-repository -y ppa:elementary-os/daily;
-
-# # Chrome 
-# wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -;
-# sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list';
-
-# # Vivaldi
-# wget -O - http://repo.vivaldi.com/stable/linux_signing_key.pub | sudo apt-key add -;
-# echo "deb http://repo.vivaldi.com/stable/deb/ stable main" | tee /etc/apt/sources.list.d/vivaldi.list;
-
+add-apt-repository -y ppa:gns3/ppa
 
 # Docker
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -;
+apt install -y \
+    apt-transport-https \
+    build-essential \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common \
+    zsh;
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
    $(lsb_release -cs) \
    stable";
-
-# Skype
-# Switching to snap package of skype instead
-# curl -fsSL  https://repo.skype.com/data/SKYPE-GPG-KEY | sudo apt-key add -;
-# echo "deb [arch=amd64] https://repo.skype.com/deb stable main" | tee /etc/apt/sources.list.d/skypeforlinux.list;
-
-# Wire
-wget -q https://wire-app.wire.com/linux/releases.key -O- | sudo apt-key add -;
-echo "deb https://wire-app.wire.com/linux/debian stable main" | tee /etc/apt/sources.list.d/wire-desktop.list;
 
 # Insync
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ACCAF35C;
 apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C;
 echo "deb http://apt.insynchq.com/ubuntu $(lsb_release -cs) non-free contrib" | tee /etc/apt/sources.list.d/insync.list;
 
-echo "Updating repositories and upgrading...\n";
+echo "Updating repositories and upgrading...\n"
 
 # Node (this scripts runs update automatically)
-curl -sL https://deb.nodesource.com/setup_9.x | bash -
-apt upgrade -y;
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 
-echo "Installing base packages";
-# Docker
-apt install -y \
-    linux-image-extra-$(uname -r) \
-    linux-image-extra-virtual;
+# Upgrade existing
+apt upgrade -y
 
-apt install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common \
-    build-essential \
-    zsh;
+echo "Installing base packages"
+
+# For sublime text
+apt install -y libgtk2.0-0
 
 
-echo "Installing packages included in Ubuntu Multiverse";
+echo "Installing packages included in Ubuntu Multiverse"
 sudo apt install anki \
-	ardour \
 	bleachbit \
 	blender \
 	breeze-icon-theme \
-	browser-plugin-vlc \
 	chkrootkit \
 	chrome-gnome-shell \
 	chromium-browser \
 	cifs-utils \
-	clamav \
-	clamtk \
+	cockpit \
+	cockpit-docker \
+	cockpit-pcp \
 	dconf-editor \
 	filezilla \
+	flatpak \
 	fonts-oxygen \
 	fonts-powerline \
 	fonts-roboto \
 	gimp \
 	git \
+	gnome-boxes \
 	gnome-shell-pomodoro \
-	gnome-software-plugin-limba \
+	gnome-software-plugin-flatpak \
 	gnome-tweak-tool \
+	golang \
 	gparted \
-	gqrx-sdr \
-	gstreamer1.0-libav \
 	gufw \
 	handbrake \
+	htop \
+	httpie \
 	inotify-tools \
 	kdenlive \
-	libaio-dev \
-	libasound2-dev \
 	libavcodec-extra \
-	libfftw3-dev \
-	libgtk-3-dev \
-	libhamlib-dev \
-	libjpeg62 \
-	libopenjp2-7 \
-	libopenjp2-7-dev \
-	libpulse-dev \
-	libusb-1.0-0-dev \
-	libv4l-dev \
-	libvolk1-bin \
-	limba \
 	mariadb-server \
 	meld \
-	mono-devel \
+	nginx \
 	obs-studio \
 	phoronix-test-suite \
 	php-fpm \
 	php-mysql \
 	php-pear \
+	php-xdebug \
+	php-xml \
 	playonlinux \
 	ppa-purge \
 	python-pip \
@@ -167,13 +99,12 @@ sudo apt install anki \
 	redis-server \
 	ruby \
 	ruby-dev \
-	sni-qt \
-	stellarium \
 	sysdig \
 	tmux \
 	tree \
-	uget \
 	ufw \
+	uget \
+	valgrind \
 	vim \
 	virtualbox \
 	vlc \
@@ -184,51 +115,75 @@ sudo apt install anki \
 	xbindkeys \
 	xbindkeys-config \
 	xclip \
-	xvkbd \
+	youtube-dl \
 	zeal \
 	zenmap;
 
-echo "Install Software from added repos";
+echo "Install Software from added repos"
 sudo apt install -y \
-	codeblocks \
-	codeblocks-contrib \
-	cubicsdr \
 	docker-ce \
-	flatpak \
-	gnome-software-plugin-flatpak \
+	docker-ce-cli \
+	containerd.io \
 	gns3-gui \
-	golang-1.9-go \
-	google-chrome-stable \
 	grub-customizer \
 	insync \
 	insync-nautilus \
-	insync-dolphin \
-	nodejs \
-	nginx \
-	rstudio \
-	teamviewer \
-	vivaldi-stable \
-	wire-desktop \
-	zeal;
-
-# Add flathub remote
-flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo;
-#Install flatpack packages
-flatpak install -y flathub org.freefilesync.FreeFileSync;
+	nodejs;
 
 
 # Install snap packages
-snap install skype brave tor-browser sublime-text;
+snap install sublime-text --classic
+snap install skype --classic
+snap install vscode --classic
+snap install powershell --classic
+snap install kubectl --classic
+snap install intellij-idea-community --classic
+snap install tor-browser --classic
 
-pip install powerline-status;
+snap install postman telegram-desktop signal-desktop wire brave okular tusk bitwarden redis-desktop-manager doctl
 
-gem install bropages;
+
+# Add flathub remote
+flatpak remote-add flathub https://flathub.org/repo/flathub.flatpakrepo
+#Install flatpack packages
+flatpak install -y flathub org.freefilesync.FreeFileSync
+flatpak install -y flathub us.zoom.Zoom
+flatpak install -y flathub com.valvesoftware.Steam
+flatpak install -y flathub io.dbeaver.DBeaverCommunity
+
+# Python
+pip install powerline-status
+
+# Ruby
+gem install bropages
+
+
+# SDR
+# ech "Installing SDR"
+# add-apt-repository -y ppa:bladerf/bladerf;
+# add-apt-repository -y ppa:ettusresearch/uhd;
+# add-apt-repository -y ppa:myriadrf/drivers;
+# add-apt-repository -y ppa:myriadrf/gnuradio;
+# add-apt-repository -y ppa:gqrx/gqrx-sdr;
+
+# apt install -y \
+# 	libaio-dev \
+# 	libasound2-dev \
+# 	libfftw3-dev \
+# 	libgtk-3-dev \
+# 	libhamlib-dev \
+# 	libjpeg62 \
+# 	libopenjp2-7 \
+# 	libopenjp2-7-dev \
+# 	libpulse-dev \
+# 	libusb-1.0-0-dev \
+# 	libv4l-dev \
+# 	libvolk1-bin \
+#	gqrx-sdr \
+#	cubicsdr;
 
 # For GQRX
-volk_profile
-
-# Configure MariaDB
-mysql_secure_installation
+#volk_profile
 
 # Setup firewall
 ufw default deny incoming
@@ -237,33 +192,65 @@ ufw default allow outgoing
 ufw enable
 
 # Set up gnome
-# gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
-# gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+gsettings set org.gnome.shell.extensions.dash-to-dock show-apps-at-top true
+gsettings set org.gnome.shell.extensions.dash-to-dock intellihide true
 
-popd
-rm -rf /staging
+# Disable development service
+systemctl systemctl disable nginx mysql redis php7.2-fpm.service
+
+# Configure MariaDB
+mysql_secure_installation
+
+# Binary and Script Installations
+curl https://sh.rustup.rs -sSf | sh
+
+echo "Installing oh-my-zsh"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh)
+
+# Make common folders
+mkdir ~/Documents/Docs
+mkdir ~/Documents/Project-Code
+mkdir ~/Documents/Programming
 
 # Todo
 # 
 # Anaconda
 # VMWare Workstation Pro
-# gns3-iou \
+# Vivaldi
+# Chrome
+# Zoom
+# TeamViewer
+# MySQL Workbench
+# Minikube?
 # PHP: cgi.fix_pathinfo=0
-# Update ~/.zshrc
-# export PATH="/home/r/anaconda3/bin:$PATH"
-# export PATH="$PATH:/usr/lib/go-1.9/bin"
-# export GOROOT=/usr/lib/go-1.9
-# export PATH="$PATH:$GOROOT/bin"
-# export PATH="$PATH:$HOME/.cargo/env"
 
-# alias tbase="tmux attach -t base || tmux new -s base"
-# alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo snap refresh"
 
-# To execute
-# 
+# If dual booting with windows
 # timedatectl set-local-rtc 1
 
 
+# Update ~/.zshrc
 
-# echo "Installing oh-my-zsh";
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)";
+echo '' >> ~/.zshrc >> ~/.profile
+echo '' >> ~/.zshrc >> ~/.profile
+echo '#Modifications:' >> ~/.zshrc >> ~/.profile
+echo 'export PATH="/home/r/anaconda3/bin:$PATH"' >> ~/.zshrc >> ~/.profile
+echo 'export PATH="$PATH:/usr/lib/go-1.10/bin"' >> ~/.zshrc >> ~/.profile
+echo 'export GOROOT=/usr/lib/go-1.10'  >> ~/.zshrc >> ~/.profile
+echo 'export PATH="$PATH:$GOROOT/bin"'  >> ~/.zshrc >> ~/.profile
+echo 'export PATH="$PATH:$HOME/.cargo/env"' >> ~/.zshrc >> ~/.profile
+echo '' >> ~/.zshrc >> ~/.profile
+echo 'alias tbase="tmux attach -t base || tmux new -s base"' >> ~/.zshrc >> ~/.profile
+echo 'alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo snap refresh"' >> ~/.zshrc >> ~/.profile
+echo 'alias startdev="sudo systemctl start nginx mysql redis php7.2-fpm.service; sudo systemctl status nginx mysql redis php7.2-fpm.service"' >> ~/.zshrc >> ~/.profile
+echo 'alias stopdev="sudo systemctl stop nginx mysql redis php7.2-fpm.service"' >> ~/.zshrc >> ~/.profile
+echo '' >> ~/.zshrc >> ~/.profile
+echo 'alias cddocs="cd ~/Documents/Docs"' >> ~/.zshrc >> ~/.profile
+echo 'alias cdprjc="cd ~/Documents/Project-Code"' >> ~/.zshrc >> ~/.profile
+echo 'alias cdprjd="cd ~/Documents/Docs/Project-Docs"' >> ~/.zshrc >> ~/.profile
+echo 'alias cdpro="cd ~/Documents/Programming"' >> ~/.zshrc >> ~/.profile
+echo 'alias cddl="cd ~/Downloads"' >> ~/.zshrc >> ~/.profile
+echo 'alias cddls="cd ~/Documents/Docs/Downloads-Shared"' >> ~/.zshrc >> ~/.profile
+echo 'alias cddld="cd ~/mnt/D/Downloads"' >> ~/.zshrc >> ~/.profile
