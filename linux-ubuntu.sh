@@ -40,12 +40,6 @@ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 # Upgrade existing
 apt upgrade -y
 
-echo "Installing base packages"
-
-# For sublime text
-apt install -y libgtk2.0-0
-
-
 echo "Installing packages included in Ubuntu Multiverse"
 sudo apt install anki \
 	bleachbit \
