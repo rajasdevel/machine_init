@@ -40,12 +40,6 @@ curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
 # Upgrade existing
 apt upgrade -y
 
-echo "Installing base packages"
-
-# For sublime text
-apt install -y libgtk2.0-0
-
-
 echo "Installing packages included in Ubuntu Multiverse"
 sudo apt install anki \
 	bleachbit \
@@ -243,7 +237,7 @@ echo 'export PATH="$PATH:$GOROOT/bin"'  >> ~/.zshrc >> ~/.profile
 echo 'export PATH="$PATH:$HOME/.cargo/env"' >> ~/.zshrc >> ~/.profile
 echo '' >> ~/.zshrc >> ~/.profile
 echo 'alias tbase="tmux attach -t base || tmux new -s base"' >> ~/.zshrc >> ~/.profile
-echo 'alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo snap refresh"' >> ~/.zshrc >> ~/.profile
+echo 'alias up="sudo apt update; sudo apt upgrade -y; sudo apt autoremove; sudo flatpak update; sudo snap refresh"' >> ~/.zshrc >> ~/.profile
 echo 'alias startdev="sudo systemctl start nginx mysql redis php7.2-fpm.service; sudo systemctl status nginx mysql redis php7.2-fpm.service"' >> ~/.zshrc >> ~/.profile
 echo 'alias stopdev="sudo systemctl stop nginx mysql redis php7.2-fpm.service"' >> ~/.zshrc >> ~/.profile
 echo '' >> ~/.zshrc >> ~/.profile
