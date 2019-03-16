@@ -144,7 +144,7 @@ echo '' >> ~/.zshrc >> ~/.bash_profile
 echo '' >> ~/.zshrc >> ~/.bash_profile
 echo '# Modifications:' >> ~/.zshrc >> ~/.bash_profile
 
-echo 'PATH="/usr/local/anaconda3/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/curl/bin:/usr/local/opt/file-formula/bin:/usr/local/opt/m4/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/unzip/bin:/usr/local/opt/sqlite/bin:/usr/local/opt/openssl/bin:/usr/local/opt/gettext/bin:$PATH:/usr/local/opt/go/libexec/bin:~/.composer/vendor/bin"' >> ~/.zshrc >> ~/.bash_profile
+echo 'PATH="/usr/local/anaconda3/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/opt/findutils/libexec/gnubin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/gnu-tar/libexec/gnubin:/usr/local/opt/grep/libexec/gnubin:/usr/local/opt/curl/bin:/usr/local/opt/file-formula/bin:/usr/local/opt/m4/bin:/usr/local/opt/make/libexec/gnubin:/usr/local/opt/unzip/bin:/usr/local/opt/sqlite/bin:/usr/local/opt/openssl/bin:/usr/local/opt/gettext/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/opt/go/libexec/bin:~/.composer/vendor/bin"' >> ~/.zshrc >> ~/.bash_profile
 echo '' >> ~/.zshrc >> ~/.bash_profile
 
 echo 'export MANPATH="/usr/local/opt/findutils/libexec/gnuman:/usr/local/opt/coreutils/libexec/gnuman:/usr/local/opt/make/libexec/gnuman:/usr/local/opt/grep/libexec/gnuman:/usr/local/opt/gnu-sed/libexec/gnuman:$MANPATH"' >> ~/.zshrc
